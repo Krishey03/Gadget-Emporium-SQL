@@ -1,0 +1,16 @@
+SQL> SELECT ROWNUM AS RANK, ProductID, ProductName, OrderQuantity
+  2  FROM
+  3  (SELECT p.ProductID, p.ProductName, SUM(od.OrderQuantity) AS OrderQuantity
+  4  FROM Product p
+  5  JOIN ProductOrder od ON p. ProductID = od. ProductID
+  6  GROUP BY P. ProductID, P. ProductName
+  7  ORDER BY OrderQuantity DESC)
+  8  WHERE ROWNUM <= 3;
+
+      RANK  PRODUCTID PRODUCTNAME          ORDERQUANTITY                        
+---------- ---------- -------------------- -------------                        
+         1          2 Xbox Controller                  3                        
+         2          3 DELL XPS                         2                        
+         3          1 Xbox 330                         2                        
+
+SQL> Spool off;

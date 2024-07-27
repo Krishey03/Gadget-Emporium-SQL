@@ -1,0 +1,14 @@
+SQL> SELECT *
+  2  FROM
+  3  (SELECT c.CustomerID, c. CustomerName, MAX(o. OrderDate) AS RecentOrderDate
+  4  FROM Customer c
+  5  JOIN Orders o ON c.CustomerID = o.CustomerID
+  6  GROUP BY c.CustomerID, c.CustomerName
+  7  ORDER BY RecentOrderDate DESC)
+  8  WHERE ROWNUM = 1;
+
+CUSTOMERID CUSTOMERNAME                                       RECENTORD                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+---------- -------------------------------------------------- ---------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+         5 Henry Stickmen                                     03/AUG/23                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+
+SQL> Spool off;

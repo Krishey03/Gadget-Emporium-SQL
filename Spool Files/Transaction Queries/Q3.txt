@@ -1,0 +1,14 @@
+SQL> SELECT v.VendorID, v.VendorName,
+  2  COUNT(p.ProductID) AS ProductCount
+  3  FROM Vendor v
+  4  JOIN Product p ON v. VendorID = p. VendorID
+  5  GROUP BY v. VendorID, v. VendorName
+  6  HAVING
+  7  COUNT(p.ProductID) > 3;
+
+  VENDORID VENDORNAME                                         PRODUCTCOUNT      
+---------- -------------------------------------------------- ------------      
+         3 Krobar Distributor                                            4      
+         1 Retro Electronics                                             4      
+
+SQL> Spool off;

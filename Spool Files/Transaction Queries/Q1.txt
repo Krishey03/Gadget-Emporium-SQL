@@ -1,0 +1,13 @@
+SQL> SELECT TO_CHAR(OrderDate, 'MM-YYYY') AS Month,
+  2  SUM(T. InvoiceTotal) AS TotalRevenue
+  3  FROM Orders o
+  4  JOIN Invoice T ON o. InvoiceNo = T. InvoiceNo
+  5  GROUP BY TO_CHAR(OrderDate, 'MM-YYYY');
+
+MONTH   TOTALREVENUE                                                            
+------- ------------                                                            
+06-2023         1365                                                            
+05-2023         1864                                                            
+08-2023           36                                                            
+
+SQL> Spool off;

@@ -1,0 +1,26 @@
+SQL> SELECT *
+  2  FROM (
+  3  SELECT C.CustomerID, C.CustomerName,
+  4  SUM(I.InvoiceTotal) AS AmountSpent,
+  5  TO_CHAR(OrderDate, 'MM-YYYY') AS Month
+  6  FROM Orders o
+  7  JOIN Customer C ON o.CustomerID = c.CustomerID
+  8  JOIN Invoice i ON o. InvoiceNo = i. InvoiceNo
+  9  WHERE OrderDate BETWEEN TO_DATE('01-08-2023', 'DD-MM-YYYY') AND TO_DATE('30-08-2023', 'DD-MM-YYYY')
+ 10  GROUP BY
+ 11  C.CustomerID, C.CustomerName,
+ 12  TO_CHAR(OrderDate, 'MM-YYYY')
+ 13  ORDER BY
+ 14  AmountSpent DESC
+ 15  )
+ 16  WHERE ROWNUM = 1;
+
+CUSTOMERID CUSTOMERNAME                                       AMOUNTSPENT       
+---------- -------------------------------------------------- -----------       
+MONTH                                                                           
+-------                                                                         
+         5 Henry Stickmen                                              36       
+08-2023                                                                         
+                                                                                
+
+SQL> Spool off;
